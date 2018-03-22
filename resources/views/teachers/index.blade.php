@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-    {{ trans('message.home') }}
+    Professores
 @endsection
 
 @section('csspage')
@@ -56,9 +56,9 @@
 
                                         <a href="{{ route('teachers.edit',$teacher)}}"
                                            class="btn btn-warning"> <i class="fa fa-edit"
-                                                                                 aria-hidden="true"></i> Editar</a>
+                                                                       aria-hidden="true"></i> Editar</a>
                                         <button type="submit"
-                                           class="btn btn-danger"><i class="fa fa-close"></i>
+                                                class="btn btn-danger"><i class="fa fa-close"></i>
                                         </button>
                                         {!! Form::close() !!}
                                     </td>

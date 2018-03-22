@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-    Dashboard
+    Início
 @endsection
 @section('contentheader_title')
     Dashboard

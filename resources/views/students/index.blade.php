@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-    Usuários
+    Alunos
 @endsection
 
 @section('csspage')
@@ -9,7 +9,7 @@
     {{--{!! Html::style('plugins/datatables/jquery.dataTables.min.css') !!}--}}
 @endsection
 @section('contentheader_title')
-    Listagem de Usuários
+    Listagem de Alunos
 @endsection
 
 
@@ -18,7 +18,7 @@
         <a href="{!! route('dashboard.index')!!}"><i class="fa fa-dashboard"></i>Inicial</a>
     </li>
     <li class="active">
-        Listagem de Usuários
+        Listagem de Alunos
 
     </li>
 @endsection
@@ -28,11 +28,13 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Usuários</h3>
+                        <h3 class="box-title">Alunos</h3>
                         <div class="pull-right">
                             <!-- Button trigger modal -->
-                            <a href="#" data-toggle="modal" data-target="#createmodal" class="btn btn-primary btn-sm rounded-s"><i class="fa fa-plus icon"></i> Criar Usuário </a>
-                            @include("users._create")
+                            <a href="#" data-toggle="modal" data-target="#createmodal"
+                               class="btn btn-primary btn-sm rounded-s"><i class="fa fa-plus icon"></i> Criar Aluno
+                            </a>
+                            @include("students._create")
                         </div>
                     </div>
                     <!-- /.box-header -->
@@ -42,16 +44,22 @@
                             <tr>
                                 <th>Nome</th>
                                 <th>E-mail</th>
-                                <th>Função</th>
                                 <th>Opções</th>
                             </tr>
-                            @forelse($users as $user)
+                            @forelse($students as $student)
                                 <tr>
-                                    <td>{!! $user->name  !!}</td>
-                                    <td>{!! $user->email !!}</td>
-                                    <td>{!! $user->roles->first()->name !!}</td>
+                                    <td>{!! $student->nome  !!}</td>
+                                    <td>{!! $student->email !!}</td>
                                     <td>
-                                        <a href="{{ route('users.edit',$user)}}" class="btn btn-block btn-warning"> <i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
+                                        {!! Form::open(['url' => route('students.destroy', $student),'method' => 'delete']) !!}
+
+                                        <a href="{{ route('students.edit',$student)}}"
+                                           class="btn btn-warning"> <i class="fa fa-edit"
+                                                                       aria-hidden="true"></i> Editar</a>
+                                        <button type="submit"
+                                                class="btn btn-danger"><i class="fa fa-close"></i>
+                                        </button>
+                                        {!! Form::close() !!}
                                     </td>
                                 </tr>
                             @empty
@@ -75,26 +83,12 @@
 
 @section('scriptpage')
 
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet" />
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css" rel="stylesheet" />
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/css/select2.min.css" rel="stylesheet"/>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2-bootstrap-theme/0.1.0-beta.10/select2-bootstrap.min.css"
+          rel="stylesheet"/>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.4/js/select2.min.js"></script>
     <script>
-        $.fn.select2.defaults.set( "theme", "bootstrap" );
+        $.fn.select2.defaults.set("theme", "bootstrap");
         $.fn.select2.defaults.set('language', 'pt-BR');
-        $(document).ready(function () {
-            $('#service_id').select2({
-                placeholder: 'Seleciona um serviço',
-                width: '100%'
-            });
-            $('#client_id').select2({
-                placeholder: 'Seleciona um serviço',
-                width: '100%'
-            });
-            $('#form_of_payment_id').select2({
-                placeholder: 'Seleciona uma Forma de Pagamento',
-                width: '100%'
-            });
-            console.log('oi');
-        })
     </script>
 @endsection

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('htmlheader_title')
-    Cursos
+    Turmas
 @endsection
 
 @section('csspage')
@@ -9,7 +9,7 @@
     {{--{!! Html::style('plugins/datatables/jquery.dataTables.min.css') !!}--}}
 @endsection
 @section('contentheader_title')
-    Listagem de Cursos
+    Listagem de Turmas
 @endsection
 
 
@@ -18,7 +18,7 @@
         <a href="{!! route('dashboard.index')!!}"><i class="fa fa-dashboard"></i>Inicial</a>
     </li>
     <li class="active">
-        Listagem de Cursos
+        Listagem de Turmas
 
     </li>
 @endsection
@@ -28,13 +28,13 @@
             <div class="col-xs-12">
                 <div class="box">
                     <div class="box-header">
-                        <h3 class="box-title">Cursos</h3>
+                        <h3 class="box-title">Turmas</h3>
                         <div class="pull-right">
                             <!-- Button trigger modal -->
                             <a href="#" data-toggle="modal" data-target="#createmodal"
-                               class="btn btn-primary btn-sm rounded-s"><i class="fa fa-plus icon"></i> Criar Curso
+                               class="btn btn-primary btn-sm rounded-s"><i class="fa fa-plus icon"></i> Criar Turma
                             </a>
-                            @include("courses._create")
+                            @include("classes._create")
                         </div>
                     </div>
                     <!-- /.box-header -->
@@ -43,19 +43,25 @@
                             <thead>
                             <tr>
                                 <th>Nome</th>
-                                <th>Descrição</th>
+                                <th>Curso</th>
+                                <th>Professor</th>
+                                <th>Turno</th>
                                 <th>Opções</th>
                             </tr>
-                            @forelse($courses as $course)
+                            @forelse($classes as $class)
                                 <tr>
-                                    <td>{!! $course->name  !!}</td>
-                                    <td>{!! $course->description !!}</td>
-                                    <td>
-                                        {!! Form::open(['url' => route('courses.destroy', $course),'method' => 'delete']) !!}
+                                    <td>{!! $class->name  !!}</td>
+                                    <td>{!! $class->course->name  !!}</td>
+                                    <td>{!! $class->teacher->name  !!}</td>
+                                    <td>{!! strtoupper($class->turno) !!}</td>
+                                    <td>                                        {!! Form::open(['url' => route('classes.destroy', $class),'method' => 'delete']) !!}
 
-                                        <a href="{{ route('courses.edit',$course)}}"
+                                        <a href="{{ route('classes.edit',$class)}}"
                                            class="btn btn-warning"> <i class="fa fa-edit"
                                                                        aria-hidden="true"></i> Editar</a>
+                                        <a href="{{ route('classes.register',$class)}}"
+                                           class="btn btn-info"> <i class="fa fa-user-plus"
+                                                                       aria-hidden="true"></i> Matricular</a>
                                         <button type="submit"
                                                 class="btn btn-danger"><i class="fa fa-close"></i>
                                         </button>

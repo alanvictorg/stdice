@@ -25,5 +25,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('users', 'UsersController');
     Route::resource('teachers', 'TeachersController');
     Route::resource('courses', 'CoursesController');
+    Route::resource('students', 'StudentsController');
+    Route::resource('classes', 'ClassesController');
+    Route::get('classes/register', 'ClassesController@register')->name('classes.register');
 
 });

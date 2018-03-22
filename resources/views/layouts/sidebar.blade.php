@@ -35,7 +35,15 @@
             @endcan
             @can('courses.index')
                 <li {{ $rota_atual == 'courses.index' ?  "class=active" : ""}}><a href="{{ route('courses.index') }}"><i
-                                class='fa fa-graduation-cap'></i> <span>Cursos</span></a></li>
+                                class='fa fa-university'></i> <span>Cursos</span></a></li>
+            @endcan
+            @can('students.index')
+                <li {{ $rota_atual == 'students.index' ?  "class=active" : ""}}><a href="{{ route('students.index') }}"><i
+                                class='fa fa-graduation-cap'></i> <span>Alunos</span></a></li>
+            @endcan
+            @can('classes.index')
+                <li {{ $rota_atual == 'classes.index' ?  "class=active" : ""}}><a href="{{ route('classes.index') }}"><i
+                                class='fa fa-group'></i> <span>Turmas</span></a></li>
             @endcan
         </ul>
     </section>

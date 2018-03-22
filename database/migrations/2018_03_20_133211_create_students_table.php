@@ -19,6 +19,7 @@ class CreateStudentsTable extends Migration
             $table->increments('id');
             $table->string('nome')->nullable();
             $table->integer('matricula')->nullable();
+            $table->string('email')->nullable();
             $table->string('filiacao')->nullable();
             $table->string('dt_nasc')->nullable();
             $table->string('natural')->nullable();
