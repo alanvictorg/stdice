@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Entities\Course;
+use App\Entities\Grade;
+use App\Entities\Student;
+use App\Entities\StudentClass;
 use App\Entities\Teacher;
+use function GuzzleHttp\Promise\all;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -40,7 +44,7 @@ class ClassesController extends Controller
     public function __construct(ClasseRepository $repository, ClasseValidator $validator)
     {
         $this->repository = $repository;
-        $this->validator  = $validator;
+        $this->validator = $validator;
     }
 
     /**
@@ -56,6 +60,7 @@ class ClassesController extends Controller
         $courses = Course::pluck('name', 'id');
         $teachers = Teacher::pluck('name', 'id');
         $turnos = ['manha' => 'Manhã', 'tarde' => 'Tarde', 'noite' => 'Noite'];
+        $students = Student::all();
         if (request()->wantsJson()) {
 
             return response()->json([
@@ -63,7 +68,8 @@ class ClassesController extends Controller
             ]);
         }
 
-        return view('classes.index', compact('classes', 'courses', 'teachers', 'turnos'));
+        return view('classes.index', compact('classes', 'courses',
+            'teachers', 'turnos', 'students'));
     }
 
     /**
@@ -85,7 +91,7 @@ class ClassesController extends Controller
 
             $response = [
                 'message' => 'Turma criada',
-                'data'    => $classe->toArray(),
+                'data' => $classe->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -97,7 +103,7 @@ class ClassesController extends Controller
         } catch (ValidatorException $e) {
             if ($request->wantsJson()) {
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -137,15 +143,17 @@ class ClassesController extends Controller
     public function edit($id)
     {
         $classe = $this->repository->find($id);
-
-        return view('classes.edit', compact('classe'));
+        $courses = Course::pluck('name', 'id');
+        $teachers = Teacher::pluck('name', 'id');
+        $turnos = ['manha' => 'Manhã', 'tarde' => 'Tarde', 'noite' => 'Noite'];
+        return view('classes.edit', compact('classe', 'courses', 'teachers', 'turnos'));
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  ClasseUpdateRequest $request
-     * @param  string            $id
+     * @param  string $id
      *
      * @return Response
      *
@@ -161,7 +169,7 @@ class ClassesController extends Controller
 
             $response = [
                 'message' => 'Turma atualizada',
-                'data'    => $classe->toArray(),
+                'data' => $classe->toArray(),
             ];
 
             if ($request->wantsJson()) {
@@ -175,7 +183,7 @@ class ClassesController extends Controller
             if ($request->wantsJson()) {
 
                 return response()->json([
-                    'error'   => true,
+                    'error' => true,
                     'message' => $e->getMessageBag()
                 ]);
             }
@@ -206,4 +214,64 @@ class ClassesController extends Controller
 
         return redirect()->back()->with('message', 'Turma deletada');
     }
+
+    public function register(Request $request, $id)
+    {
+        $data = $request->all();
+        $matriculado = false;
+        foreach ($data['students'] as $studentid) {
+            $student = Student::find($studentid);
+            foreach ($student->classes as $class) {
+                if ($class->id == $id) {
+                    $matriculado = true;
+                }
+            }
+            if (!$matriculado) {
+                $dataRegister['student_id'] = $studentid;
+                $dataRegister['classe_id'] = $id;
+                $register = StudentClass::create($dataRegister);
+
+                $dataGrade['student_id'] = $studentid;
+                $dataGrade['classe_id'] = $id;
+                $grade = Grade::create($dataGrade);
+            }
+            $matriculado = false;
+        }
+        return redirect()->back()->with('message', 'Alunos matriculados');
+    }
+
+    public function toassign($classid)
+    {
+        $class = $this->repository->find($classid);
+        $studentsOfClass = $class->students;
+
+        foreach ($studentsOfClass as $key => $student) {
+            $nome = explode(" ", $student->nome );
+            $studentsOfClass[$key]->nome = $nome[0]." ".$nome[1];
+            foreach ($student->grades as $grade) {
+                if ($grade->classe_id == $classid) {
+                    $studentsOfClass[$key]['grade'] = $grade;
+                }
+            }
+        }
+
+        return view('classes.toassign', compact('studentsOfClass'));
+    }
+
+    public function assign(Request $request)
+    {
+        $data = $request->all();
+        $students = $data['students'];
+        foreach ($students as $student) {
+            $media = number_format((($student['n1'] + $student['n2'] + $student['n3']) / 3), 2);
+            $updateGrade = Grade::where('classe_id',$student['classe_id'])
+                ->where('student_id', $student['student_id'])
+                ->update(['n1'=> $student['n1'], 'n2' => $student['n2'],
+                    'n3' => $student['n3'], 'media' => $media,
+                    'presence' => $student['presence']]);
+        }
+        return redirect()->back()->with('message', 'Atualização feita');
+
+    }
+
 }

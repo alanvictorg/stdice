@@ -59,13 +59,19 @@
                                         <a href="{{ route('classes.edit',$class)}}"
                                            class="btn btn-warning"> <i class="fa fa-edit"
                                                                        aria-hidden="true"></i> Editar</a>
-                                        <a href="{{ route('classes.register',$class)}}"
+                                        <a href="#" data-toggle="modal" data-target="#createmodal1"
                                            class="btn btn-info"> <i class="fa fa-user-plus"
                                                                        aria-hidden="true"></i> Matricular</a>
+                                        <a href="{{ route('classes.toassign',$class)}}"
+                                           class="btn btn-warning"> <i class="fa fa-cubes"
+                                                                       aria-hidden="true"></i></a>
+
                                         <button type="submit"
                                                 class="btn btn-danger"><i class="fa fa-close"></i>
                                         </button>
+
                                         {!! Form::close() !!}
+                                        @include("classes._register")
                                     </td>
                                 </tr>
                             @empty

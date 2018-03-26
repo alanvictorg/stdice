@@ -27,6 +27,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('courses', 'CoursesController');
     Route::resource('students', 'StudentsController');
     Route::resource('classes', 'ClassesController');
-    Route::get('classes/register', 'ClassesController@register')->name('classes.register');
+    Route::post('classes/register/{class}', 'ClassesController@register')->name('classes.register');
+    Route::get('classes/toassign/{class}', 'ClassesController@toassign')->name('classes.toassign');
+    Route::post('classes/assign', 'ClassesController@assign')->name('classes.assign');
 
 });

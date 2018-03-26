@@ -40,6 +40,11 @@ class UsersController extends Controller
         $data['email'] = $request->email;
         $data['updated_at'] = date('y-m-d');
 
+        if ($request->file('imagepath')){
+            $image = Storage::disk('public')->put("/images", $request->file('imagepath') );
+            $data['imagepath'] = $image;
+        }
+
         User::where('id',$id)->update($data);
 
         $response = [
