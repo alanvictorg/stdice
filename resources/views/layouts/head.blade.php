@@ -28,11 +28,12 @@
     @auth
         <link href="{{ asset('/css/app-admin.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('/plugins/sweetalert2/css/sweetalert2.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('/css/custom.css') }}" rel="stylesheet" type="text/css" />
     @endauth
 
     @guest
-        <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css" />
         <link href="{{ asset('/css/custom.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('/css/app.css') }}" rel="stylesheet" type="text/css" />
 
     @endguest
     

@@ -51,7 +51,7 @@
                                     <td>{!! $user->email !!}</td>
                                     <td>{!! $user->roles->first()->name !!}</td>
                                     <td>
-                                        <a href="{{ route('users.edit',$user)}}" class="btn btn-block btn-warning"> <i class="fa fa-edit" aria-hidden="true"></i> Editar</a>
+                                        <a href="{{ route('users.edit',$user)}}" class="btn btn-block btn-warning btn-circle"> <i class="fa fa-edit" aria-hidden="true"></i></a>
                                     </td>
                                 </tr>
                             @empty

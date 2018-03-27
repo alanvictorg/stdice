@@ -55,10 +55,10 @@
                                     <td>                                        {!! Form::open(['url' => route('teachers.destroy', $teacher),'method' => 'delete']) !!}
 
                                         <a href="{{ route('teachers.edit',$teacher)}}"
-                                           class="btn btn-warning"> <i class="fa fa-edit"
-                                                                       aria-hidden="true"></i> Editar</a>
+                                           class="btn btn-warning btn-circle"> <i class="fa fa-edit"
+                                                                       aria-hidden="true"></i></a>
                                         <button type="submit"
-                                                class="btn btn-danger"><i class="fa fa-close"></i>
+                                                class="btn btn-danger btn-circle" style="float: right"><i class="fa fa-close"></i>
                                         </button>
                                         {!! Form::close() !!}
                                     </td>

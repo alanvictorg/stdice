@@ -201,4 +201,12 @@ class StudentsController extends Controller
 
         return redirect()->back()->with('message', 'Student deleted.');
     }
+
+    public function historic($studentid)
+    {
+        $student = $this->repository->find($studentid);
+        $classe = $student->classes->first();
+        $student['course'] = $classe->course;
+        return view('students.historic', compact('student'));
+    }
 }

@@ -35,6 +35,7 @@ class CreateGradesTable extends Migration
             $table->double('n3')->nullable()->default('0');
             $table->double('media')->nullable()->default('0');
             $table->integer('presence')->nullable()->default('0');
+            $table->enum('status', ['standby', 'studying', 'completed'])->nullable()->default('studying');
 
             $table->timestamps();
 		});

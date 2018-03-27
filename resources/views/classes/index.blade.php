@@ -57,17 +57,17 @@
                                     <td>                                        {!! Form::open(['url' => route('classes.destroy', $class),'method' => 'delete']) !!}
 
                                         <a href="{{ route('classes.edit',$class)}}"
-                                           class="btn btn-warning"> <i class="fa fa-edit"
-                                                                       aria-hidden="true"></i> Editar</a>
+                                           class="btn btn-warning btn-circle"> <i class="fa fa-edit"
+                                                                       aria-hidden="true"></i></a>
                                         <a href="#" data-toggle="modal" data-target="#createmodal1"
-                                           class="btn btn-info"> <i class="fa fa-user-plus"
-                                                                       aria-hidden="true"></i> Matricular</a>
+                                           class="btn btn-info btn-circle"> <i class="fa fa-user-plus"
+                                                                       aria-hidden="true"></i></a>
                                         <a href="{{ route('classes.toassign',$class)}}"
-                                           class="btn btn-warning"> <i class="fa fa-cubes"
+                                           class="btn btn-warning btn-circle"> <i class="fa fa-cubes"
                                                                        aria-hidden="true"></i></a>
 
                                         <button type="submit"
-                                                class="btn btn-danger"><i class="fa fa-close"></i>
+                                                class="btn btn-danger btn-circle" style="float: right"><i class="fa fa-close"></i>
                                         </button>
 
                                         {!! Form::close() !!}

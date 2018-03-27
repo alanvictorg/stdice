@@ -4,11 +4,66 @@
     margin: 0 auto;
 }
 
-
-.form-signin img{
+.form-signin img {
     width: 60%;
 }
 
 .login-logo {
     text-align: center;
+}
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+}
+
+.btn-circle.btn-lg {
+    width: 50px;
+    height: 50px;
+    padding: 10px 16px;
+    font-size: 18px;
+    line-height: 1.33;
+    border-radius: 25px;
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+}
+
+.border-input {
+    border-width: 1px;
+    text-align: center;
+}
+
+.historic {
+    margin-top: 20px;
+}
+
+.studying {
+    border-radius: 50%;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border: 1px solid #000000;
+    background-color: #ffef1e;
+}
+
+
+.completed {
+    border-radius: 50%;
+    display: inline-block;
+    height: 20px;
+    width: 20px;
+    border: 1px solid #000000;
+    background-color: #2bff00;
 }

@@ -52,11 +52,11 @@
                                     {!! Form::hidden('students['.$key.'][student_id]', $student->id) !!}
                                     {!! Form::hidden('students['.$key.'][classe_id]', $student->grade->classe_id) !!}
                                     <td>{!! $student->nome  !!}</td>
-                                    <td>{!! Form::text('students['.$key.'][n1]', $student->grade->n1, ['placeholder'=>$student->grade->n1])  !!}</td>
-                                    <td>{!! Form::text('students['.$key.'][n2]', $student->grade->n2, ['placeholder'=>$student->grade->n2])  !!}</td>
-                                    <td>{!! Form::text('students['.$key.'][n3]', $student->grade->n3, ['placeholder'=>$student->grade->n3])  !!}</td>
-                                    <td>{!! Form::label($student->grade->media)  !!}</td>
-                                    <td>{!! Form::text('students['.$key.'][presence]', $student->grade->presence, ['placeholder'=>$student->grade->presence])  !!}</td>
+                                    <td>{!! Form::text('students['.$key.'][n1]', $student->grade->n1, ["class" => "border-input",'placeholder'=>$student->grade->n1])  !!}</td>
+                                    <td>{!! Form::text('students['.$key.'][n2]', $student->grade->n2, ["class" => "border-input",'placeholder'=>$student->grade->n2])  !!}</td>
+                                    <td>{!! Form::text('students['.$key.'][n3]', $student->grade->n3, ["class" => "border-input",'placeholder'=>$student->grade->n3])  !!}</td>
+                                    <td style="text-align: center">{!! Form::label($student->grade->media)  !!}</td>
+                                    <td>{!! Form::text('students['.$key.'][presence]', $student->grade->presence, ["class" => "border-input",'placeholder'=>$student->grade->presence])  !!}</td>
                                     {{--<td>{!! strtoupper($class->turno) !!}</td>--}}
                                     {{--<td>--}}
                                     {{--<a href="{{ route('classes.edit',$class)}}"--}}
