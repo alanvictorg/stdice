@@ -1,6 +1,6 @@
-<aside class="main-sidebar">
+<aside class="main-sidebar alter-nav">
     <!-- sidebar: style can be found in sidebar.less -->
-    <section class="sidebar">
+    <section class="sidebar ">
         <!-- Sidebar user panel -->
         <div class="user-panel">
             <div class="pull-left image">
@@ -18,8 +18,8 @@
             </div>
         </div>
         <!-- sidebar menu: : style can be found in sidebar.less -->
-        <ul class="sidebar-menu" data-widget="tree">
-            <li class="header">Menu</li>
+        <ul class="sidebar-menu alter-nav" data-widget="tree">
+            <li class="header alter-nav">Menu</li>
             @can('dashboard.index')
                 <li {{ $rota_atual == 'dashboard.index' ?  "class=active" : ""}} ><a
                             href="{{ route('dashboard.index') }}"><i class='fa fa-home'></i> <span>Inicial</span></a>

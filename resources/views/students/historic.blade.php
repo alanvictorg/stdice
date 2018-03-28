@@ -13,14 +13,14 @@
     Histórico
 @endsection
 @section('contentheader_description')
-    Histórico do student
+    Histórico do aluno
 @endsection
 @section('breadcrumb')
     <li>
         <a href="{!! route('dashboard.index')!!}"><i class="fa fa-dashboard"></i>Inicial</a>
     </li>
     <li>
-        <a href="{!! route('students.index')!!}"><i class="fa fa-feed"></i> Listagem de students</a>
+        <a href="{!! route('students.index')!!}"><i class="fa fa-feed"></i> Listagem de alunos</a>
     </li>
     <li class="active">
         Histórico - {!! $student->name !!}
