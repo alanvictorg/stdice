@@ -45,6 +45,10 @@
                 <li {{ $rota_atual == 'classes.index' ?  "class=active" : ""}}><a href="{{ route('classes.index') }}"><i
                                 class='fa fa-group'></i> <span>Turmas</span></a></li>
             @endcan
+            @can('events.index')
+                <li {{ $rota_atual == 'events.index' ?  "class=active" : ""}}><a href="{{ route('events.index') }}"><i
+                                class='fa fa-calendar-check-o'></i> <span>Eventos</span></a></li>
+            @endcan
         </ul>
     </section>
     <!-- /.sidebar -->

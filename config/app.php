@@ -167,7 +167,7 @@ return [
         Collective\Html\HtmlServiceProvider::class,
 
         Creativeorange\Gravatar\GravatarServiceProvider::class,
-
+        MaddHatter\LaravelFullcalendar\ServiceProvider::class,
 
     ],
 
@@ -221,6 +221,7 @@ return [
         'Form' =>  Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
         'Gravatar' => Creativeorange\Gravatar\Facades\Gravatar::class,
+        'Calendar' => MaddHatter\LaravelFullcalendar\Facades\Calendar::class,
 
     ],
 

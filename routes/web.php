@@ -26,6 +26,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('teachers', 'TeachersController');
     Route::resource('courses', 'CoursesController');
     Route::resource('students', 'StudentsController');
+    Route::resource('events', 'EventsController');
+
     Route::get('students/historic/{class}', 'StudentsController@historic')->name('students.historic');
 
     Route::resource('classes', 'ClassesController');
